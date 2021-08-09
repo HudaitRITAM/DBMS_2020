@@ -1,0 +1,169 @@
+SQL> create table employee_25feb(
+  2  empid number(2) primary key,
+  3  emane varchar2(10),
+  4  age number(2),
+  5  phoneno number(10),
+  6  addr varchar2(10));
+
+Table created.
+
+SQL> create table client_25feb(
+  2  cltid number(2) primary key,
+  3  cname varchar2(10),
+  4  age number(2),
+  5  ph number(10),
+  6  addr varchar2(10),
+  7  foreign key (empid) references employee_25feb(empid));
+foreign key (empid) references employee_25feb(empid))
+             *
+ERROR at line 7:
+ORA-00904: "EMPID": invalid identifier 
+
+
+SQL> insert into employee_25feb(1,'ritam',24,9362674938,'westbengal');
+insert into employee_25feb(1,'ritam',24,9362674938,'westbengal')
+                           *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> insert into employee_25feb values(1,'ritam',24,9362674938,'westbengal');
+
+1 row created.
+
+SQL> insert into employee_25feb values(2,'harsh',25,9278699058,'jharkhand');
+
+1 row created.
+
+SQL> insert into employee_25feb values(3,'aditya',26,9485890898,'bihar');
+
+1 row created.
+
+SQL> insert into employee_25feb values(4,'chirag',28,9485878908,'assam');
+
+1 row created.
+
+SQL> insert into employee_25feb values(5,'rupam',29,9485876758,'maharashtra');
+insert into employee_25feb values(5,'rupam',29,9485876758,'maharashtra')
+                                                          *
+ERROR at line 1:
+ORA-12899: value too large for column "RITAM"."EMPLOYEE_25FEB"."ADDR" (actual: 
+11, maximum: 10) 
+
+
+SQL> insert into employee_25feb values(5,'rupam',29,9485876758,'guahti');
+
+1 row created.
+
+SQL> select *from employee_25feb;
+
+     EMPID EMANE             AGE    PHONENO ADDR                                
+---------- ---------- ---------- ---------- ----------                          
+         1 ritam              24 9362674938 westbengal                          
+         2 harsh              25 9278699058 jharkhand                           
+         3 aditya             26 9485890898 bihar                               
+         4 chirag             28 9485878908 assam                               
+         5 rupam              29 9485876758 guahti                              
+
+SQL> create table client_25feb(
+  2  cltid number(2) primary key,
+  3  cname varchar2(10),
+  4  age number(2),
+  5  ph number(10),
+  6  addr varchar2(10),
+  7  empid number(2),
+  8  foreign key (empid) references employee_25feb(empid));
+
+Table created.
+
+SQL> create table project_25feb(
+  2  p_id number(2) primary key,
+  3  empid number(2),
+  4  foreign key (empid) references employee_25feb(empid),
+  5  cltid number(2),
+  6  foreign key (cltid) references client_25feb(cltid),
+  7  pname varchar2(8),
+  8  p_date date;
+p_date date
+          *
+ERROR at line 8:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table project_25feb(
+  2  p_id number(2) primary key,
+  3  empid number(2),
+  4  foreign key (empid) references employee_25feb(empid),
+  5  cltid number(2),
+  6  foreign key (cltid) references client_25feb(cltid),
+  7  pname varchar2(8),
+  8  p_date date);
+
+Table created.
+
+SQL> desc employee_25feb;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                     NOT NULL NUMBER(2)
+ EMANE                                              VARCHAR2(10)
+ AGE                                                NUMBER(2)
+ PHONENO                                            NUMBER(10)
+ ADDR                                               VARCHAR2(10)
+
+SQL> select*from empolyee_25feb;
+select*from empolyee_25feb
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select *from employee_25feb;
+
+     EMPID EMANE             AGE    PHONENO ADDR                                
+---------- ---------- ---------- ---------- ----------                          
+         1 ritam              24 9362674938 westbengal                          
+         2 harsh              25 9278699058 jharkhand                           
+         3 aditya             26 9485890898 bihar                               
+         4 chirag             28 9485878908 assam                               
+         5 rupam              29 9485876758 guahti                              
+
+SQL> desc client_25feb;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CLTID                                     NOT NULL NUMBER(2)
+ CNAME                                              VARCHAR2(10)
+ AGE                                                NUMBER(2)
+ PH                                                 NUMBER(10)
+ ADDR                                               VARCHAR2(10)
+ EMPID                                              NUMBER(2)
+
+SQL> desc project_25feb;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ P_ID                                      NOT NULL NUMBER(2)
+ EMPID                                              NUMBER(2)
+ CLTID                                              NUMBER(2)
+ PNAME                                              VARCHAR2(8)
+ P_DATE                                             DATE
+
+SQL> insert into client_25feb values(&cltid,&cname,&age,&ph,&addr,&empid);
+Enter value for cltid: 11
+Enter value for cname: ram
+Enter value for age: 34
+Enter value for ph: 1234567890
+Enter value for addr: vijaynagar
+Enter value for empid: 3
+old   1: insert into client_25feb values(&cltid,&cname,&age,&ph,&addr,&empid)
+new   1: insert into client_25feb values(11,ram,34,1234567890,vijaynagar,3)
+insert into client_25feb values(11,ram,34,1234567890,vijaynagar,3)
+                                                     *
+ERROR at line 1:
+ORA-00984: column not allowed here 
+
+
+SQL> spool off
+SQL> select *from client_25feb;
+
+no rows selected
+
+SQL> exit
