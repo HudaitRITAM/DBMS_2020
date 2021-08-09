@@ -1,0 +1,9 @@
+SQL> create TABLE branch_797 (BrName VARCHAR2(5) PRIMARY KEY, BrCity varchar2(5) NOT NULL);
+
+Table created.
+
+SQL> create table account_797 (accNo CHAR(5) PRIMARY KEY, balance NUMBER,BrName varchar2(5) references branch(BrName));
+
+Table created.
+
+SQL> SPOOL off;
