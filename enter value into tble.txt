@@ -1,0 +1,139 @@
+
+SQL> /
+Enter value for cltid: 1
+Enter value for cname: 'vijay'
+Enter value for age: 25
+Enter value for ph: 1234567890
+Enter value for addr: 'bbsr'
+Enter value for empid: 3
+old   1: insert into client25 values(&cltid,&cname,&age,&ph,&addr,&empid)
+new   1: insert into client25 values(1,'Ravi',55,8975634512,'Kolkata',3)
+
+1 row created.
+
+SQL> /
+Enter value for cltid: 2
+Enter value for cname: 'nitesh'
+Enter value for age: 25
+Enter value for ph: 0987654321
+Enter value for addr: 'Kolkata'
+Enter value for empid: 3
+old   1: insert into client25 values(&cltid,&cname,&age,&ph,&addr,&empid)
+new   1: insert into client25 values(2,'Rajesh',65,9933476589,'Kolkata',3)
+
+1 row created.
+
+SQL> /
+Enter value for cltid: 3
+Enter value for cname: 'akash'
+Enter value for age: 25
+Enter value for ph: 9382959630
+Enter value for addr: 'Delhi'
+Enter value for empid: 1
+old   1: insert into client25 values(&cltid,&cname,&age,&ph,&addr,&empid)
+new   1: insert into client25 values(3,'Prakash',45,9223487674,'Delhi',1)
+
+1 row created.
+
+SQL> /
+Enter value for cltid: 4
+Enter value for cname: 'daya'
+Enter value for age: 25
+Enter value for ph: 9609227133
+Enter value for addr: 'Cuttak'
+Enter value for empid: 5
+old   1: insert into client25 values(&cltid,&cname,&age,&ph,&addr,&empid)
+new   1: insert into client25 values(4,'Ahmad',35,9114845684,'Chennai',5)
+
+1 row created.
+
+SQL> /
+Enter value for cltid: 5
+Enter value for cname: 'molly'
+Enter value for age: 25
+Enter value for ph: 9732554530
+Enter value for addr: 'Mumbai'
+Enter value for empid: 5
+old   1: insert into client25 values(&cltid,&cname,&age,&ph,&addr,&empid)
+new   1: insert into client25 values(5,'Anmol',48,9226677889,'Mumbai',5)
+
+1 row created.
+
+SQL> select *from client25;
+
+     CLTID CNAME             AGE         PH ADDR            EMPID
+---------- ---------- ---------- ---------- ---------- ----------
+         1 vijay               25 1234567890 bbsr            3
+         2 nitesh             25 0987654321 Kolkata             3
+         3 akash            25 9382959630 Delhi               1
+         4 daya              25 9609227133 Cuttak             5
+         5 molly              25 9732554530 Mumbai              5
+
+SQL> CREATE TABLE PROJECT25 (p_id number primary key,empid number references EMPLOYEE25,cltid number references CLIENT25,pname varchar2(8),p_date date);
+
+Table created.
+
+SQL> insert into PROJECT25 values(&p_id,&empid,&cltid,&pname,&p_date);
+Enter value for p_id: 10
+Enter value for empid: 3
+Enter value for cltid: 5
+Enter value for pname: 'Pro-4'
+Enter value for p_date: '12-FEB-2009'
+old   1: insert into PROJECT25 values(&p_id,&empid,&cltid,&pname,&p_date)
+new   1: insert into PROJECT25 values(10,3,5,'Pro5','12-FEB-2009')
+
+1 row created.
+
+SQL> /
+Enter value for p_id: 20
+Enter value for empid: 3
+Enter value for cltid: 3
+Enter value for pname: 'Pro-1'
+Enter value for p_date: '25-JAN-2009'
+old   1: insert into PROJECT25 values(&p_id,&empid,&cltid,&pname,&p_date)
+new   1: insert into PROJECT25 values(20,3,3,'Pro4','25-JAN-2009')
+
+1 row created.
+
+SQL> /
+Enter value for p_id: 30
+Enter value for empid: 1
+Enter value for cltid: 3
+Enter value for pname: 'Pro-2'
+Enter value for p_date: '26-FEB-2000'
+old   1: insert into PROJECT25 values(&p_id,&empid,&cltid,&pname,&p_date)
+new   1: insert into PROJECT25 values(30,1,3,'Pro3','26-FEB-2000')
+
+1 row created.
+
+SQL> /
+Enter value for p_id: 40
+Enter value for empid: 3
+Enter value for cltid: 5
+Enter value for pname: 'Pro-3'
+Enter value for p_date: '27-MAR-2001'
+old   1: insert into PROJECT25 values(&p_id,&empid,&cltid,&pname,&p_date)
+new   1: insert into PROJECT25 values(40,3,5,'Pro2','27-MAR-2001')
+
+1 row created.
+
+SQL> /
+Enter value for p_id: 50
+Enter value for empid: 5
+Enter value for cltid: 4
+Enter value for pname: 'Pro-1'
+Enter value for p_date: '28-APRIL-2002'
+old   1: insert into PROJECT25 values(&p_id,&empid,&cltid,&pname,&p_date)
+new   1: insert into PROJECT25 values(50,5,4,'Pro1','28-APRIL-2002')
+
+1 row created.
+
+SQL> select *from project25;
+
+      P_ID      EMPID      CLTID PNAME    P_DATE
+---------- ---------- ---------- -------- ---------
+        10          3          5 Pro5    12-FEB-09
+        20          3          3 Pro4    01-APR-09
+        30          1          3 Pro3    11-MAR-00
+        40          3          5 Pro2    19-MAR-01
+        50          5          4 Pro1    22-DEC-02
