@@ -1,0 +1,27 @@
+DECLARE
+	avg_mark NUMBER;
+	physics NUMBER;
+	CHEMISTY NUMBER;
+	MATHEMATICS NUMBER;
+	
+	BEGIN
+	
+	physics := &physics;
+        CHEMISTY := &CHEMISTY;
+	MATHEMATICS :=&MATHEMATICS;
+	avg_mark:=(physics + CHEMISTY + MATHEMATICS )/3;
+		IF avg_mark > 70 THEN
+			IF avg_mark > 90 THEN
+				DBMS_OUTPUT.PUT_LINE('Average mark is>90 1905797');
+			ELSIF avg_mark > 80 THEN
+			DBMS_OUTPUT.PUT_LINE('Average mark is>80 1905797');
+		ELSIF avg_mark > 70 THEN
+		DBMS_OUTPUT.PUT_LINE('Average mark is>70 1905797');
+		ELSE
+		DBMS_OUTPUT.PUT_LINE('Average mark is<70 1905797');
+
+	END IF;
+		ELSE
+		DBMS_OUTPUT.PUT_LINE('Average mark is<70 1905797');
+	END IF;
+END;

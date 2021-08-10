@@ -1,0 +1,13 @@
+set serveroutput on;
+
+DECLARE
+	i int;
+BEGIN
+	i := 10;
+	for i in reverse 1..10 
+	loop
+		
+		dbms_output.put_line(' 1905797 :' || i );
+		exit when i=0;
+	END LOOP;
+END;

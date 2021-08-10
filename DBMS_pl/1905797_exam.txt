@@ -1,0 +1,11 @@
+declare
+n number(2);
+i number(2);
+p number(2):=1;
+begin
+n:=&n;
+for i in 1..n loop
+p:=p*i;
+end loop;
+dbms_output.put_line(n ||' ! = '||p);
+end;
